@@ -1,0 +1,46 @@
+</!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>LongXiao's Daily Todo</title>
+</head>
+<body>
+	<h1>Todo List</h1>
+	<div>
+		<h2>新增 </h2> 
+		<form action="{{ url_for('add')}}" method="POST">
+			<input type="text" name="todoitem">
+			<input type="submit" name="Add Item">
+		</form>
+	</div>
+	<div>
+		<h2>未完成</h2>
+		<ul>
+			{% for todo in incomplete %}
+			{% if todo.date.strftime("%Y-%m-%d") == currentTime %}		
+			<li style="font-size: 16pt">
+				{{todo.text}}
+				{{todo.date.strftime("%Y-%m-%d")}}
+				<a href="{{ url_for('complete', id=todo.id) }}">完成</a>
+				<a href="{{ url_for('delete', id=todo.id) }}">删除</a>
+			</li>
+			{% endif %}
+			{% endfor %}
+		</ul>
+		<h2>已完成</h2>
+		<ul>
+			{% for todo in complete %}
+			{% if todo.date.strftime("%Y-%m-%d") == currentTime %}	
+			<li style="font-size: 16pt">
+				{{ todo.text }}
+				<a href="{{ url_for('incomplete', id=todo.id) }}">移至待办列表</a>
+				<a href="{{ url_for('delete', id=todo.id) }}">删除</a>
+			</li>
+			{% endif %}
+			{% endfor %}
+		</ul>
+		<h2>归档</h2>
+		
+	</div>
+</body>
+</html>
