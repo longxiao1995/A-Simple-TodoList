@@ -1,2 +1,5 @@
 # A-Simple-TodoList
-# A-Simple-TodoList
+
+一个简单的小应用，它可以
+1. 记录每天的待办事项
+2. 一目了然的看到过去这些日子里做了什么
