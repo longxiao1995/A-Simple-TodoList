@@ -1,8 +1,8 @@
 import os
+from datetime import datetime, date
 
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy 
-from datetime import datetime
 
 
 app = Flask(__name__)
@@ -21,7 +21,7 @@ class Todo(db.Model):
 def index():
 	incomplete = Todo.query.filter_by(complete=False).all()
 	complete = Todo.query.filter_by(complete=True).all()
-	currentTime = datetime.now().strftime('%Y-%m-%d')
+	currentTime = date.today().strftime('%Y-%m-%d')
 
 	return render_template('index.html',incomplete=incomplete,complete=complete,currentTime=currentTime)
 
